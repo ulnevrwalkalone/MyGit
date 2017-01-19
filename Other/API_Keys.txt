@@ -1,0 +1,3 @@
+Google Maps Time Zone API: AIzaSyC1-EBoQ-GVoN-B04_yQQRBDDdJV1mLS1U
+Google Maps API: AIzaSyBWd4YTG2hiHRgyv16kql8GMpEKX-3kRzk
+Dark Sky API: f093cde891c1e796d5917d07cdc2c0d0
