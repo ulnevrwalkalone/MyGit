@@ -1,32 +1,20 @@
 import requests, os, datetime
+from location import location, my_location, latitude, longitude
 
-my_location= input("Please enter your location")
-api_location=''
+def dark_sky(latitude, longitude):
+    #make an API call and store the response
+    url= 'https://api.darksky.net/forecast/f093cde891c1e796d5917d07cdc2c0d0/%s,%s' %(latitude, longitude)
+    r= requests.get(url)
 
-def location(my_location):
-    list_location= my_location.split()
-    api_location= '+'.join(map(str, list_location))
+    #store api response in a variable
+    response_dict = r.json()
+    currently_dict=response_dict['currently']['temperature']
+    global my_location
+    #Proces results
+    return(str(currently_dict))
+
 
 location(my_location)
+dark_sky(latitude, longitude)
 
-geo_url='https://maps.googleapis.com/maps/api/geocode/json?address='+str(api_location)+'&key=AIzaSyBWd4YTG2hiHRgyv16kql8GMpEKX-3kRzk'
-g=requests.get(geo_url)
-geo_dict = g.json()
-location_dict = geo_dict['location']
-latitude=location_dict['lat']
-longitude=location_dict['lng']
-#make an API call and store the response
-url= 'https://api.darksky.net/forecast/f093cde891c1e796d5917d07cdc2c0d0/'+str(latitude)+','+str(longitude)
-#+latitude+','+longitude'
-r= requests.get(url)
-
-#store api response in a variable
-response_dict = r.json()
-currently_dict=response_dict['currently']
-
-#Proces results
-print(currently_dict.keys())
-
-"""print("Timezone :", response_dict['timezone'])
-print("Current Time :", currently_dict['time'] )
-print(currently_dict['cloudCover'])"""
+print('The current temperature for %s is %s' %(my_location, currently_dict))
