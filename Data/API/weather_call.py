@@ -28,6 +28,7 @@ def dark_sky(latitude, longitude):
     temperature=response_dict['currently']['temperature']
     #Proces results
     return(str(temperature))
+
 dark_sky(latitude,longitude)
 
 print('The current temperature for %s is %s degrees fehrenheit' %(my_location, temperature))
